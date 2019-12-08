@@ -18,12 +18,12 @@ Resources:
             !Sub "${EnvironmentName}-VPCID"
       GroupName: Security Group for Load Balancer
       SecurityGroupEgress: 
-        - CidrIp: String
+        - CidrIp: 0.0.0.0/0
           FromPort: 80
           ToPort: 80
           IpProtocol: tcp
       SecurityGroupIngress: 
-        - CidrIp: String
+        - CidrIp: 0.0.0.0/0
           FromPort: 80
           ToPort: 80
           IpProtocol: tcp
