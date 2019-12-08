@@ -1,0 +1,55 @@
+Description: |
+  André Rieck - Udacity Cloud Tech Course 
+
+Parameters:
+
+     EnvironmentName:
+         Description: Env Name that will be prefixed in order to access Variables exported in the stack from Lession 21
+         Type: String
+
+Resources:
+
+  LBSecGroup:
+    Type: AWS::EC2::SecurityGroup
+    Properties: 
+      GroupDescription: Allow hhtp to Load Balanacer
+      VpcId: String
+      GroupName: Security Group for Load Balancer
+      SecurityGroupEgress: 
+        - CidrIp: String
+          FromPort: 80
+          ToPort: 80
+          IpProtocol: tcp
+      SecurityGroupIngress: 
+        - CidrIp: String
+          FromPort: 80
+          ToPort: 80
+          IpProtocol: tcp
+      Tags: 
+        - Tag
+   
+  WebServerSecGroup:
+    Type: AWS::EC2::SecurityGroup
+    Properties: 
+      GroupDescription: Allow http / SSH only from local VPC
+      VpcId: String
+      GroupName: Security Group for WebServer internal traffic
+      SecurityGroupEgress: 
+        - CidrIp: 0.0.0.0/0
+          FromPort: 0
+          ToPort: 65535
+          IpProtocol: tcp
+      SecurityGroupIngress: 
+        - CidrIp: 0.0.0.0/0
+          FromPort: 8080
+          ToPort: 8080
+          IpProtocol: tcp
+        - CidrIp: 0.0.0.0/0
+          FromPort: 22
+          ToPort: 22
+          IpProtocol: tcp
+      Tags: 
+        - Tag
+
+    
+   
