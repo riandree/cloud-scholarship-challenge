@@ -13,7 +13,9 @@ Resources:
     Type: AWS::EC2::SecurityGroup
     Properties: 
       GroupDescription: Allow hhtp to Load Balanacer
-      VpcId: String
+      VpcId: 
+          Fn::ImportValue:
+            !Sub "${EnvironmentName}-VPCID"
       GroupName: Security Group for Load Balancer
       SecurityGroupEgress: 
         - CidrIp: String
@@ -25,14 +27,14 @@ Resources:
           FromPort: 80
           ToPort: 80
           IpProtocol: tcp
-      Tags: 
-        - Tag
    
   WebServerSecGroup:
     Type: AWS::EC2::SecurityGroup
     Properties: 
       GroupDescription: Allow http / SSH only from local VPC
-      VpcId: String
+      VpcId: 
+          Fn::ImportValue:
+            !Sub "${EnvironmentName}-VPCID"
       GroupName: Security Group for WebServer internal traffic
       SecurityGroupEgress: 
         - CidrIp: 0.0.0.0/0
@@ -48,8 +50,6 @@ Resources:
           FromPort: 22
           ToPort: 22
           IpProtocol: tcp
-      Tags: 
-        - Tag
 
     
    
