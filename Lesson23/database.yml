@@ -1,0 +1,28 @@
+Description: |
+  Ythalo Rossy / Udacity 2019
+
+Parameters:
+  EnvironmentName:
+    Description: An environment name that will be prefixed to resource
+    Type: String
+
+Resources:
+  UdacityProjectDatabase:
+    Type: AWS::RDS::DBInstance
+    Properties:
+      DBSecurityGroups:
+      - !Ref DBSecurityGroup
+      AllocatedStorage: '20'
+      DBInstanceClass: db.t2.micro
+      Engine: MySQL
+      MasterUsername: username
+      MasterUserPassword: password
+    DeletionPolicy: Snapshot
+
+  DBSecurityGroup:
+    Type: "AWS::RDS::DBSecurityGroup"
+    Properties:
+      DBSecurityGroupIngress: #required
+        - EC2SecurityGroupId: sg-026bc85cac7abf103
+      EC2VpcId: vpc-0b9ec9a6a164ecb21
+      GroupDescription: Udacity Projct Database Group #required
