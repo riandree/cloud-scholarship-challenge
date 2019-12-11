@@ -17,10 +17,10 @@ Resources:
           Fn::ImportValue:
             !Sub "${EnvironmentName}-VPCID"
       GroupName: Security Group for Load Balancer
-      SecurityGroupEgress: 
+      SecurityGroupEgress: # notwendig ?
         - CidrIp: 0.0.0.0/0
-          FromPort: 80
-          ToPort: 80
+          FromPort: 8080
+          ToPort: 8080
           IpProtocol: tcp
       SecurityGroupIngress: 
         - CidrIp: 0.0.0.0/0
@@ -36,7 +36,7 @@ Resources:
           Fn::ImportValue:
             !Sub "${EnvironmentName}-VPCID"
       GroupName: Security Group for WebServer internal traffic
-      SecurityGroupEgress: 
+      SecurityGroupEgress:   # wozu ?
         - CidrIp: 0.0.0.0/0
           FromPort: 0
           ToPort: 65535
